@@ -1,8 +1,13 @@
-import { Aside } from "./components/Aside";
+import { ThemeProvider } from 'styled-components';
+
+import { Home } from './pages/Home';
+import theme from './theme';
 
 function App() {
   return (
-    <Aside />
+    <ThemeProvider theme={theme}>
+      <Home />
+    </ThemeProvider>
   );
 }
 

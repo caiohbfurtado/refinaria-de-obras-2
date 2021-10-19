@@ -4,13 +4,22 @@ import * as S from './styles';
 
 export function Aside() {
   const [category, setCategory] = useState('movies');
+  const [title, setTitle] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log({
+      category,
+      title,
+    });
+  }
 
   return (
     <S.Container>
       <Title title="pesquisar" />
       <p>O que deseja buscar?</p>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="radios">
           <input 
             type="radio" 
@@ -32,6 +41,20 @@ export function Aside() {
             />
           <label htmlFor="series">Séries</label>
         </div>
+
+        <input 
+          type="text"
+          placeholder="texto da busca (ex: back to the future)"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+        />
+
+        <button 
+          type='submit' 
+          disabled={!(!!title)}
+        >
+          PESQUISAR
+        </button>
       </form>
     </S.Container>
   );
